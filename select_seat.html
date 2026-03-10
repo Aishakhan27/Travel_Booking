@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Seat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4e73df, #9b59b6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .seat-container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            width: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .seat-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .bus-layout {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .seat {
+            background: #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .seat:hover {
+            background: #6c5ce7;
+            color: white;
+        }
+
+        .seat.selected {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .seat.booked {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .aisle {
+            grid-column: span 4;
+            height: 10px;
+        }
+
+        .driver {
+            text-align: right;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .confirm-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #ff7f50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .confirm-btn:hover {
+            background: #ff5722;
+        }
+
+        .legend {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .legend span {
+            margin: 0 10px;
+        }
+
+        .available-box {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: #e0e0e0;
+            margin-right: 5px;
+        }
+
+        .selected-box {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: #2ecc71;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="seat-container">
+
+    <div class="driver">🧑‍✈ Driver</div>
+    <h2>Select Your Seat</h2>
+
+    <form action="/bus/book" method="POST">
+
+        <input type="hidden" name="booking_type" value="bus">
+        <input type="hidden" name="bus_number" value="{{ bus_number }}">
+        <input type="hidden" name="price" value="{{ price }}">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="email" value="{{ email }}">
+        <input type="hidden" name="source" value="{{ source }}">
+        <input type="hidden" name="destination" value="{{ destination }}">
+        <input type="hidden" name="date" value="{{ date }}">
+        <input type="hidden" name="seat_number" id="selectedSeatInput" required>
+
+        <div class="bus-layout">
+            {% for i in range(1, 21) %}
+                <div class="seat" onclick="selectSeat(this, '{{ i }}')">
+                    {{ i }}
+                </div>
+                {% if i % 4 == 0 %}
+                    <div class="aisle"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="confirm-btn">
+            Confirm Seat & Continue
+        </button>
+
+    </form>
+
+    <div class="legend">
+        <span><span class="available-box"></span> Available</span>
+        <span><span class="selected-box"></span> Selected</span>
+    </div>
+
+</div>
+
+<script>
+function selectSeat(element, seatNumber) {
+
+    document.querySelectorAll('.seat').forEach(seat => {
+        seat.classList.remove('selected');
+    });
+
+    element.classList.add('selected');
+    document.getElementById("selectedSeatInput").value = seatNumber;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Payment</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .payment-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .payment-box {
+            background: white;
+            width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid #2196F3;
+            font-weight: bold;
+        }
+
+        .payment-section {
+            display: none;
+        }
+
+        .payment-section.active {
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #ff6f61;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #e64a19;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="payment-wrapper">
+<div class="payment-box">
+
+    <h2>💳 Secure Payment</h2>
+
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('card')">Card</div>
+        <div class="tab" onclick="showTab('upi')">UPI</div>
+        <div class="tab" onclick="showTab('netbanking')">Net Banking</div>
+        <div class="tab" onclick="showTab('wallet')">Wallet</div>
+    </div>
+
+    <form action="/payment/process" method="POST">
+        <input type="hidden" name="booking_type" value="{{ booking_type }}">
+
+        {% for key, value in data.items() %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endfor %}
+
+        <!-- CARD -->
+        <div class="payment-section active" id="card">
+            <input type="text" name="card_number" placeholder="Card Number">
+            <input type="text" name="expiry" placeholder="MM/YY">
+            <input type="text" name="cvv" placeholder="CVV">
+        </div>
+
+        <!-- UPI -->
+        <div class="payment-section" id="upi">
+            <input type="text" name="upi_id" placeholder="Enter UPI ID (example@upi)">
+        </div>
+
+        <!-- NET BANKING -->
+        <div class="payment-section" id="netbanking">
+            <select name="bank">
+                <option>Select Bank</option>
+                <option>SBI</option>
+                <option>HDFC</option>
+                <option>ICICI</option>
+                <option>Axis Bank</option>
+            </select>
+        </div>
+
+        <!-- WALLET -->
+        <div class="payment-section" id="wallet">
+            <select name="wallet">
+                <option>Select Wallet</option>
+                <option>Paytm</option>
+                <option>Amazon Pay</option>
+                <option>PhonePe</option>
+            </select>
+        </div>
+
+        <button type="submit">Pay Now</button>
+
+    </form>
+
+</div>
+</div>
+
+<script>
+function showTab(tabName) {
+
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    document.querySelectorAll('.payment-section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+    document.getElementById(tabName).classList.add('active');
+}
+</script>
+
+</body>
+</html>

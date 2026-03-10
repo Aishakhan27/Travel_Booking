@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f4f6f9;
+        }
+
+        .navbar {
+            background: #243b55;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .booking-container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .booking-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .status {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    ✈ TravelApp - My Bookings
+</div>
+
+<h2>Recent Bookings</h2>
+
+<div class="booking-container">
+
+    <!-- BUS BOOKINGS -->
+    {% for booking in bus_bookings %}
+    <div class="booking-card">
+        <h3>🚌 Bus Booking</h3>
+        <p><strong>Booking ID:</strong> {{ booking.booking_id }}</p>
+        <p><strong>Name:</strong> {{ booking.name }}</p>
+        <p><strong>From:</strong> {{ booking.source }} → {{ booking.destination }}</p>
+        <p><strong>Date:</strong> {{ booking.date }}</p>
+        <p><strong>Price:</strong> ₹{{ booking.price }}</p>
+        <p class="status">{{ booking.status }}</p>
+    </div>
+    {% endfor %}
+
+    <!-- FLIGHT BOOKINGS -->
+    {% for booking in flight_bookings %}
+    <div class="booking-card">
+        <h3>✈ Flight Booking</h3>
+        <p><strong>Booking ID:</strong> {{ booking.booking_id }}</p>
+        <p><strong>Name:</strong> {{ booking.name }}</p>
+        <p><strong>From:</strong> {{ booking.from_city }} → {{ booking.to_city }}</p>
+        <p><strong>Date:</strong> {{ booking.date }}</p>
+        <p><strong>Price:</strong> ₹{{ booking.price }}</p>
+        <p class="status">{{ booking.status }}</p>
+    </div>
+    {% endfor %}
+
+    <!-- HOTEL BOOKINGS -->
+    {% for booking in hotel_bookings %}
+    <div class="booking-card">
+        <h3>🏨 Hotel Booking</h3>
+        <p><strong>Booking ID:</strong> {{ booking.booking_id }}</p>
+        <p><strong>Name:</strong> {{ booking.name }}</p>
+        <p><strong>Hotel:</strong> {{ booking.hotel_name }}</p>
+        <p><strong>City:</strong> {{ booking.city }}</p>
+        <p><strong>Price:</strong> ₹{{ booking.price }}</p>
+        <p class="status">{{ booking.status }}</p>
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

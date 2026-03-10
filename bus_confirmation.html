@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Receipt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="receipt-body">
+
+<div class="receipt-container">
+
+    <div class="receipt-card">
+
+        <div class="receipt-header">
+            <h2>🎉 Booking Confirmed</h2>
+            <p>Your ticket has been successfully booked</p>
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-details">
+
+            <div class="row-detail">
+                <span>Booking ID</span>
+                <strong>{{ booking_id }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Passenger Name</span>
+                <strong>{{ name }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Bus Number</span>
+                <strong>{{ bus_number }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Total Paid</span>
+                <strong>₹{{ price }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Status</span>
+                <strong class="status-success">CONFIRMED</strong>
+            </div>
+
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-footer">
+            <p>📧 Receipt has been sent to your registered email.</p>
+            <p>📱 Ticket details have been sent to your registered phone number.</p>
+        </div>
+
+        <div class="receipt-buttons">
+            <a href="/" class="btn-primary">Go to Home</a>
+            <a href="/bus" class="btn-secondary">Book Another Bus</a>
+        </div>
+        <div class="row-detail">
+    <span>Seat Number</span>
+    <strong>{{ seat_number }}</strong>
+</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Booking Receipt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="receipt-body">
+
+<div class="receipt-container">
+    <div class="receipt-card">
+
+        <div class="receipt-header">
+            <h2>✈ Flight Booking Confirmed</h2>
+            <p>Your flight ticket has been successfully booked</p>
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-details">
+
+            <div class="row-detail">
+                <span>Booking ID</span>
+                <strong>{{ booking_id }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Passenger Name</span>
+                <strong>{{ name }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Flight Number</span>
+                <strong>{{ flight_number }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>From</span>
+                <strong>{{ source }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>To</span>
+                <strong>{{ destination }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Total Paid</span>
+                <strong>₹{{ price }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Status</span>
+                <strong class="status-success">CONFIRMED</strong>
+            </div>
+
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-footer">
+            <p>📧 E-Ticket has been sent to your registered email.</p>
+            <p>📱 Booking details have been sent to your registered phone number.</p>
+        </div>
+
+        <div class="receipt-buttons">
+            <a href="/" class="btn-primary">Go to Home</a>
+            <a href="/flight" class="btn-secondary">Book Another Flight</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

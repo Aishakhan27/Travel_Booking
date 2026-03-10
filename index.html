@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Booking</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">TripNest</div>
+    <div class="nav-links">
+        <a href="/my-bookings">My Bookings</a>
+        <a href="/help">Help</a>
+        <a href="/account">Account</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+        <h1>Explore the World With Us</h1>
+        <p>Book Flights, Buses & Hotels at the Best Prices</p>
+    </div>
+</section>
+
+<!-- BOOKING CARDS -->
+<section class="services">
+
+    <!-- BUS -->
+    <a href="{{ url_for('bus') }}" class="card">
+        <div class="icon">🚌</div>
+        <h3>Bus Booking</h3>
+        <p>Affordable intercity travel</p>
+    </a>
+
+    <!-- FLIGHT -->
+    <a href="{{ url_for('flight') }}" class="card">
+        <div class="icon">✈</div>
+        <h3>Flight Booking</h3>
+        <p>Domestic & International flights</p>
+    </a>
+
+    <!-- HOTEL -->
+    <a href="{{ url_for('hotel') }}" class="card">
+        <div class="icon">🏨</div>
+        <h3>Hotel Booking</h3>
+        <p>Comfort stays worldwide</p>
+    </a>
+
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-us">
+    <h2>Why Choose TravelApp?</h2>
+    <div class="why-grid">
+        <div>💰 Best Price Guarantee</div>
+        <div>⚡ Instant Booking</div>
+        <div>🔒 Secure Payments</div>
+        <div>📞 24/7 Support</div>
+    </div>
+</section>
+
+</body>
+</html>

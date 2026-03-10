@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Booking Receipt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="receipt-body">
+
+<div class="receipt-container">
+    <div class="receipt-card">
+
+        <div class="receipt-header">
+            <h2>🏨 Hotel Booking Confirmed</h2>
+            <p>Your stay has been successfully reserved</p>
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-details">
+
+            <div class="row-detail">
+                <span>Booking ID</span>
+                <strong>{{ booking_id }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Guest Name</span>
+                <strong>{{ name }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Hotel Name</span>
+                <strong>{{ hotel_name }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Check-In Date</span>
+                <strong>{{ checkin }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Check-Out Date</span>
+                <strong>{{ checkout }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Total Paid</span>
+                <strong>₹{{ price }}</strong>
+            </div>
+
+            <div class="row-detail">
+                <span>Status</span>
+                <strong class="status-success">CONFIRMED</strong>
+            </div>
+
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-footer">
+            <p>📧 Booking confirmation has been sent to your registered email.</p>
+            <p>📱 Hotel details have been shared on your registered phone number.</p>
+        </div>
+
+        <div class="receipt-buttons">
+            <a href="/" class="btn-primary">Go to Home</a>
+            <a href="/hotel" class="btn-secondary">Book Another Hotel</a>
+        </div>
+        <!-- HERO SLIDER -->
+<div class="hotel-hero">
+
+    <div class="slides">
+
+        <div class="slide active">
+            <img src="{{ url_for('static', filename='delhihotel.jpg') }}">
+            <div class="overlay">
+                <h1>Find Your Perfect Stay</h1>
+                <p>Luxury • Comfort • Best Prices Guaranteed</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="{{ url_for('static', filename='Taj_Mahal_Palace_Hotel_photo.jpg') }}">
+            <div class="overlay">
+                <h1>Experience Royal Hospitality</h1>
+                <p>Premium hotels across India</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="{{ url_for('static', filename='goahotel.jpg') }}">
+            <div class="overlay">
+                <h1>Escape To Paradise</h1>
+                <p>Beach Resorts & Relaxing Vacations</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+</body>
+</html>

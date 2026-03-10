@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">TripNest</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#">My Bookings</a>
+        <a href="#">Help</a>
+        <a href="#">Account</a>
+    </div>
+</nav>
+
+<!-- SEARCH SECTION -->
+<section class="bus-page">
+
+    <div class="search-container">
+        <h2>🚌 Search Bus</h2>
+
+        <form method="POST" class="search-form">
+            <input type="text" name="source" placeholder="Enter Source" required>
+            <input type="text" name="destination" placeholder="Enter Destination" required>
+            <input type="date" name="date" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if searched %}
+
+    <div class="results-container">
+        <h3>Available Buses</h3>
+
+        {% for bus in buses %}
+        <div class="bus-card">
+
+            <img src="{{ url_for('static', filename='bus.jpg') }}" alt="Bus">
+
+            <div class="bus-details">
+                <h4>{{ bus.bus_number }}</h4>
+                <p><strong>Type:</strong> {{ bus.type }}</p>
+                <p><strong>Time:</strong> {{ bus.time }}</p>
+                <p class="price">₹{{ bus.price }}</p>
+
+                    <form action="/select-seat" method="POST" class="booking-form">
+                    <input type="hidden" name="bus_number" value="{{ bus.bus_number }}">
+                    <input type="hidden" name="source" value="{{ source }}">
+                    <input type="hidden" name="destination" value="{{ destination }}">
+                    <input type="hidden" name="date" value="{{ date }}">
+                    <input type="hidden" name="price" value="{{ bus.price }}">
+                    <input type="hidden" name="booking_type" value="bus">
+                    <button type="submit">Select Seat</button>
+
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+</body>
+</html>

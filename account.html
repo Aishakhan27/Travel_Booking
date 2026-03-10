@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Account</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .account-card {
+            background: white;
+            width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #ff6f61, #ff9472);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-header h2 {
+            margin: 10px 0 5px;
+        }
+
+        .profile-body {
+            padding: 30px;
+        }
+
+        .profile-body input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2a5298;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            background: #1e3c72;
+        }
+
+        .info-box {
+            margin-top: 20px;
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="account-card">
+
+    <div class="profile-header">
+        <h2>👤 My Account</h2>
+        <p>Manage your profile information</p>
+    </div>
+
+    <div class="profile-body">
+
+        <form method="POST">
+            <input type="text" name="name" placeholder="Full Name"
+                   value="{{ user.name if user else '' }}" required>
+
+            <input type="email" name="email" placeholder="Email"
+                   value="{{ user.email if user else '' }}" required>
+
+            <input type="text" name="phone" placeholder="Phone Number"
+                   value="{{ user.phone if user else '' }}" required>
+
+            <input type="text" name="city" placeholder="City"
+                   value="{{ user.city if user else '' }}" required>
+
+            <button type="submit" class="save-btn">Save Information</button>
+        </form>
+
+        {% if user %}
+        <div class="info-box">
+            <h3>Stored Information</h3>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone:</strong> {{ user.phone }}</p>
+            <p><strong>City:</strong> {{ user.city }}</p>
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
